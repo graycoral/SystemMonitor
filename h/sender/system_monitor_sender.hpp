@@ -2,7 +2,7 @@
 #ifndef SYSTEM_MONITOR_SENDER_HPP
 #define SYSTEM_MONITOR_SENDER_HPP
 
-#include "system_monitor_common.hpp"
+#include "common/system_monitor_common.hpp"
 #include "system_monitor_sender_interface.hpp"
 
 /**

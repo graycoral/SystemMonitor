@@ -1,11 +1,9 @@
-#ifndef SYSTEM_MONITOR_HPP
-#define SYSTEM_MONITOR_HPP
 
 #include "system_monitor.hpp"
 
 SystemMonitor::SystemMonitor() : reader_(nullptr), sender_(nullptr)
 {
-    reader_ = std::make_unique<SystemMonitorReaderBase>();
+    reader_ = std::make_unique<SystemMonitorDataReaderBase>();
     sender_ = std::make_unique<SystemMonitorSender>();
 }
 

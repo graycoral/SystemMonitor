@@ -3,7 +3,7 @@
 
 #include "system_monitor.hpp"
 
-static std::unique_ptr<SystemMonitor> system_monitor;
+std::unique_ptr<SystemMonitor> system_monitor;
 
 int main(int argc, char* argv[]) {
     system_monitor = std::make_unique<SystemMonitor>();

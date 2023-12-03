@@ -3,14 +3,15 @@
 #define SYSTEM_MONITOR_READER_HPP
 
 #include "system_monitor_base.hpp"
-
+#include "system_monitor_sender_interface.hpp"
 
 /**
  * @brief The SystemMonitorReader class is responsible for reading system monitor data.
  */
 class SystemMonitorReader {
 private:
-    SystemMonitorReaderBase system_monitor_base;
+    SystemMonitorDataReaderBase data_reader_;
+    ISystemMonitorSender& system_info_;
 
 public:
     /**

@@ -13,7 +13,7 @@
  * This class provides an interface for system monitor readers.
  * It inherits from the SystemMnotirInterface class.
  */
-class SystemMonitorReaderBase
+class SystemMonitorDataReaderBase
 {
 private:
     /**
@@ -22,9 +22,9 @@ private:
     ISystemMonitorSender& system_info_;
 public:
     /**
-     * @brief Destructor for the SystemMonitorReaderBase class.
+     * @brief Destructor for the SystemMonitorDataReaderBase class.
      */
-    virtual ~SystemMonitorReaderBase() {}
+    virtual ~SystemMonitorDataReaderBase() {}
 
     /**
      * @brief Initializes the system monitor reader.

@@ -3,7 +3,7 @@
 #include "system_monitor_interface.h"
 #include "sender.h"
 
-class SystemMonitorReaderQualcomm : public SystemMonitorReaderBase, public SystemMonitorInterface {
+class SystemMonitorReaderQualcomm : public SystemMonitorDataReaderBase, public SystemMonitorInterface {
 public:
     void updateData() override {
         // Implementation to update data

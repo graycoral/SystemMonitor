@@ -48,7 +48,7 @@ private:
     bool isRunning();
 
 private:
-    std::unique_ptr<SystemMonitorReaderBase> reader_;
+    std::unique_ptr<SystemMonitorDataReaderBase> reader_;
     std::unique_ptr<SystemMonitorSender> sender_;
 
     bool is_running_;
