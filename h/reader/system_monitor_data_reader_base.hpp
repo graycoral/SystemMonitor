@@ -4,8 +4,7 @@
 #ifndef SYSTEM_MONITOR_READER_BASE_HPP
 #define SYSTEM_MONITOR_READER_BASE_HPP
 
-#include "system_monitor_interface.hpp"
-#include "system_monitor_common.hpp"
+#include "common/system_monitor_common.hpp"
 
 /**
  * @brief The base class for system monitor readers.
@@ -15,11 +14,6 @@
  */
 class SystemMonitorDataReaderBase
 {
-private:
-    /**
-     * @brief The SystemMonitorInterface object to store the system information.
-     */
-    ISystemMonitorSender& system_info_;
 public:
     /**
      * @brief Destructor for the SystemMonitorDataReaderBase class.
@@ -36,17 +30,16 @@ public:
      */
     virtual void readSystemInformation() = 0;
 
-    /**
-     * @brief Puts system information into the provided SystemMonitorInterface object.
-     *
-     * @param system_info The SystemMonitorInterface object to store the system information.
-     */
-    virtual void putSystemInformation(ISystemMonitorSender& system_info) = 0;
+    
 
     /**
      * @brief Stops the system monitor reader.
      */
     virtual void stop() = 0;
+
+protected:
+    std::thread thread_;
+    std::mutex mutex_;
 };
 
 #endif // SYSTEM_MONITOR_READER_BASE_HPP

@@ -1,20 +1,21 @@
 # CMake minimum version requirement
 cmake_minimum_required(VERSION 3.10)
 
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Project name
 project(systemmonitor)
 
 # Add source files
 set(SOURCES
-    src/main.cpp
-    src/utils.cpp
-    src/monitor.cpp
+    src/*.cpp
 )
 
 # Add header files
 set(HEADERS
-    include/utils.h
-    include/monitor.h
+    h
 )
 
 # Add executable target

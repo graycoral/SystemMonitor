@@ -2,6 +2,8 @@
 #define SYSTEM_MONITOR_HPP
 
 #include "system_monitor_common.hpp"
+#include "reader/system_monitor_data_reader_base.hpp"
+#include "sender/system_monitor_sender.hpp"
 
 /**
  * @brief The SystemMonitor class represents a system monitor.
@@ -39,13 +41,6 @@ public:
      * @return true if stopping is successful, false otherwise.
      */
     bool stop();
-
-private:
-    /**
-     * @brief Checks if the system monitor is running.
-     * @return true if the system monitor is running, false otherwise.
-     */
-    bool isRunning();
 
 private:
     std::unique_ptr<SystemMonitorDataReaderBase> reader_;

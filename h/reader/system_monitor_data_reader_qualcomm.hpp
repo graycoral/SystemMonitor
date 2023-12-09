@@ -2,9 +2,7 @@
 #define SYSTEM_MONITOR_READER_HPP
 
 #include "system_monitor_base.hpp"
-#include "system_monitor_interface.hpp"
-#include "system_monitor_sender.hpp"
-
+#include "system_monitor_sender_interface.hpp"
 
 /**
  * @brief The SystemMonitorReaderQualcomm class.
