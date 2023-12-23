@@ -10,7 +10,11 @@ project(systemmonitor)
 
 # Add source files
 set(SOURCES
-    src/*.cpp
+    src/main.cpp
+    src/system_monitor.cpp
+    src/sender/system_monitor_sender.cpp
+    src/reader/system_monitor_reader.cpp
+    src/reader/system_monitor_data_reader_linux.cpp
 )
 
 # Add header files
@@ -22,4 +26,8 @@ set(HEADERS
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 # Set include directories
-target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_include_directories(${PROJECT_NAME} PUBLIC include
+                        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/h)
+
+# Set link libraries
+target_link_libraries(${PROJECT_NAME} PUBLIC ptherad)

@@ -1,0 +1,26 @@
+
+@startuml
+
+title SystemMonitor class diagram
+
+class SystemMonitor
+
+interface ISystemMonitorSender
+class SystemMonitorReader
+class SystemMonitorDataReaderBase
+class SystemMonitorDataReaderLinux
+class SystemMonitorDataReaderSamsung
+class SystemMonitorCommunicator
+
+SystemMonitorReader -up-> SystemMonitor
+SystemMonitorSender -up-> SystemMonitor
+
+SystemMonitorDataReaderBase -up-> SystemMonitorReader
+SystemMonitorDataReaderLinux -up-|> SystemMonitorDataReaderBase
+SystemMonitorDataReaderSamsung -up-|> SystemMonitorDataReaderBase
+
+ISystemMonitorSender -left-> SystemMonitorReader
+SystemMonitorSender -left-|> ISystemMonitorSender
+SystemMonitorSender -down-> SystemMonitorCommunicator
+
+@enduml

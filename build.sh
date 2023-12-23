@@ -4,6 +4,11 @@
 # Set the build directory
 BUILD_DIR="build"
 
+# Remove the build directory if it exists
+if [ -d $BUILD_DIR ]; then
+    rm -rf $BUILD_DIR
+fi
+
 # Create the build directory if it doesn't exist
 mkdir -p $BUILD_DIR
 

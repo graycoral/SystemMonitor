@@ -7,70 +7,77 @@
 #include "system_monitor_base.hpp"
 
 /**
- * @brief The SystemMonitorReader class is responsible for reading system monitor data.
+ * @brief The SystemMonitorReader class is responsible for reading system
+ * monitor data.
  */
 class SystemMonitorReader {
-private:
-    /**
-     * @brief The base class for the SystemMonitorDataReader.
-     *
-     * This class provides the interface for reading system monitor data.
-     */
-    SystemMonitorDataReaderBase data_reader_;
+ private:
+  /**
+   * @brief The base class for the SystemMonitorDataReader.
+   *
+   * This class provides the interface for reading system monitor data.
+   */
+  SystemMonitorDataReaderBase data_reader_;
 
-    /**
-     * @brief The SystemMonitorInterface object to store the system information.
-     */
-    ISystemMonitorSender& system_info_;
+  /**
+   * @brief The SystemMonitorInterface object to store the system information.
+   */
+  ISystemMonitorSender& system_info_;
 
-public:
-    /**
-     * @brief Constructs a SystemMonitorReader object.
-     */
-    SystemMonitorReader();
+ public:
+  /**
+   * @brief Constructs a SystemMonitorReader object.
+   */
+  SystemMonitorReader();
 
-    /**
-     * @brief Destroys the SystemMonitorReader object.
-     */
-    virtual ~SystemMonitorReader() = default;
+  /**
+   * @brief Destroys the SystemMonitorReader object.
+   */
+  virtual ~SystemMonitorReader() = default;
 
-    /**
-     * @brief Initializes the system monitor reader.
-     */
-    bool init();
+  /**
+   * @brief Initializes the system monitor reader.
+   */
+  bool init();
 
-    /**
-     * @brief Stops the system monitor reader.
-     */
-    bool stop();
+  /**
+   * @brief Stops the system monitor reader.
+   */
+  bool stop();
 
-    /**
-     * @brief Reads the system monitor data.
-     */
-    bool readData();
+  /**
+   * @brief Reads the system monitor data.
+   */
+  bool readData();
 
-    /**
-     * @brief Starts the system monitor reader.
-     */
-    bool start();
-private:
-    /**
-     * @brief Puts system information into the provided SystemMonitorInterface object.
-     *
-     * @param system_info The SystemMonitorInterface object to store the system information.
-     */
-    void putSystemInformation(ISystemMonitorSender& system_info);
+  /**
+   * @brief Starts the system monitor reader.
+   */
+  bool start();
 
-    /**
-     * @brief Structure to hold system monitor data.
-     */
-    struct SystemMonitorData {
-        std::vector<float> cpu_usage;
-        std::vector<float> cpu_temperature;
-        std::vector<float> gpu_usage;
-    };
+ private:
+  /**
+   * @brief Puts system information into the provided SystemMonitorInterface
+   * object.
+   *
+   * @param system_info The SystemMonitorInterface object to store the system
+   * information.
+   */
+  void putSystemInformation(ISystemMonitorSender& system_info);
 
-    SystemMonitorData prev_data_;
+  /**
+   * @brief Structure to hold system monitor data.
+   */
+  struct SystemMonitorData {
+    std::vector<float> cpu_usage;
+    std::vector<float> cpu_temperature;
+    std::vector<float> gpu_usage;
+  };
+
+  SystemMonitorData prev_data_;
+
+  std::thread thread_;
+  stdL::mutex mutex_;
 };
 
-#endif // SYSTEM_MONITOR_READER_HPP
+#endif  // SYSTEM_MONITOR_READER_HPP
