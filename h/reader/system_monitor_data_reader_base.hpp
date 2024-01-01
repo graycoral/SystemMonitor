@@ -15,7 +15,7 @@ class SystemMonitorDataReaderBase {
   /**
    * @brief Constructs a SystemMonitorDataReaderBase object.
    */
-  SystemMonitorDataReaderBase();
+  SystemMonitorDataReaderBase() = default;
 
   /**
    * @brief Destructor for the SystemMonitorDataReaderBase class.

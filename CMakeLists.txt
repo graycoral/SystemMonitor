@@ -17,6 +17,9 @@ set(SOURCES
     src/reader/system_monitor_data_reader_linux.cpp
 )
 
+# For MAC M1 or M2 process
+set(CMAKE_OSX_ARCHITECTURES "arm64")
+
 # Add header files
 set(HEADERS
     h

@@ -17,7 +17,7 @@ class SystemMonitorDataReaderLinux : public SystemMonitorDataReaderBase {
   /**
    * @brief Default constructor.
    */
-  SystemMonitorDataReaderLinux();
+  SystemMonitorDataReaderLinux() = default;
 
   /**
    * @brief Destructor.
