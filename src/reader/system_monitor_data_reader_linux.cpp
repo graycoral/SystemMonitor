@@ -3,10 +3,14 @@
 #include <memory.h>
 
 #include <fstream>
-#include <sstream>
 #include <iterator>
+#include <sstream>
 
 const char* filename = "/proc/stat";
+
+SystemMonitorDataReaderLinux::SystemMonitorDataReaderLinux() {
+    std::cout << "Construct for SM Linux" << std::endl;
+}
 
 bool SystemMonitorDataReaderLinux::init() {
   // Initialize the data reader

@@ -15,8 +15,7 @@ class SystemMonitorDataReaderBase {
   /**
    * @brief Constructs a SystemMonitorDataReaderBase object.
    */
-  SystemMonitorDataReaderBase(
-      std::weak_ptr<ISystemMonitorSender>& sender_interface);
+  SystemMonitorDataReaderBase();
 
   /**
    * @brief Destructor for the SystemMonitorDataReaderBase class.
