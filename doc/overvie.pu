@@ -1,0 +1,23 @@
+@startuml Overview
+
+title Overview
+
+!define APP_FRAME class "System Monitor" {
+    rectangle SystemMonitorApp {
+        rectangle "Reader"
+        rectangle "Sender"
+    }
+
+    rectangle Node {
+      rectangle Node1
+    }
+
+    cloud Grafana as "Grafana" {
+      file f3
+    }
+
+    Sender -right- Grafana : gprc
+    Grafana -[hidden]- Node
+    Sender -right- Node
+}
+@enduml

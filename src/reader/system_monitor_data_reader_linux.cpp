@@ -46,11 +46,11 @@ bool SystemMonitorDataReaderLinux::readSystemInformation(
           long user = std::stol(tokens[1]);
           long nice = std::stol(tokens[2]);
           long system = std::stol(tokens[3]);
-          long idle = std::stol(tokens[4]);
-
-          // Calculate CPU usage percentage
+          long idle usage percentage
           long total = user + nice + system + idle;
-          double usage = (total - idle) / static_cast<double>(total) * 100.0;
+          double usa= std::stol(tokens[4]);
+
+          // Calculate CPU ge = (total - idle) / static_cast<double>(total) * 100.0;
 
           // Update cur_data_ with CPU usage
           current_data.cpu_usage.push_back(usage);
