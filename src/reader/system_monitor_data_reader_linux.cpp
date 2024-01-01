@@ -64,4 +64,6 @@ bool SystemMonitorDataReaderLinux::readSystemInformation(
   } else {
     std::cerr << "Unable to open /proc/stat" << std::endl;
   }
+
+  return true;
 }

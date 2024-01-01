@@ -30,4 +30,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC include
                         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/h)
 
 # Set link libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC)
+target_link_libraries(${PROJECT_NAME} PUBLIC pthread)

@@ -1,12 +1,5 @@
 #include "reader/system_monitor_reader.hpp"
-
-#include "common/system_monitor_common.hpp"
-
-#ifdef __linux__
 #include "reader/system_monitor_data_reader_linux.hpp"
-#else
-#include "reader/system_monitor_data_reader_samsung.hpp"
-#endif
 
 SystemMonitorReader::SystemMonitorReader(
     std::weak_ptr<ISystemMonitorSender>& system_iterface) {
@@ -14,11 +7,7 @@ SystemMonitorReader::SystemMonitorReader(
 }
 
 bool SystemMonitorReader::init() {
-#ifdef __linux__
   data_reader_ = std::make_shared<SystemMonitorDataReaderLinux>();
-#else
-//   data_reader_ = std::make_shared<SystemMonitorDataReaderSamsung>();
-#endif  // __linux__
 
   if (!data_reader_->init()) {
     std::cerr << "Failed to initialize system monitor reader." << std::endl;

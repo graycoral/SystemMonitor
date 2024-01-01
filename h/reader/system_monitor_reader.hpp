@@ -4,6 +4,7 @@
 
 #include "common/system_monitor_common.hpp"
 #include "reader/system_monitor_data_reader_base.hpp"
+#include "sender/system_monitor_sender_interface.hpp"
 
 /**
  * @brief The SystemMonitorReader class is responsible for reading system

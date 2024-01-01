@@ -1,5 +1,5 @@
-#ifndef SYSTEM_MONITOR_READER_HPP
-#define SYSTEM_MONITOR_READER_HPP
+#ifndef SYSTEM_MONITOR_DATA_READER_LINUX_HPP
+#define SYSTEM_MONITOR_DATA_READER_LINUX_HPP
 
 #include "reader/system_monitor_data_reader_base.hpp"
 #include "sender/system_monitor_sender_interface.hpp"
@@ -45,4 +45,4 @@ class SystemMonitorDataReaderLinux : public SystemMonitorDataReaderBase {
   bool readSystemInformation(SystemMonitorData& current_data) override;
 };
 
-#endif  // SYSTEM_MONITOR_READER_HPP
+#endif  // SYSTEM_MONITOR_DATA_READER_LINUX_HPP
