@@ -53,10 +53,6 @@ class SystemMonitorSender : public ISystemMonitorSender {
    * @param data The data to be sent.
    */
   void sendData(const std::string& data);
-
- private:
-  std::thread thread_;
-  std::mutex mutex_;
 };
 
 #endif  // SYSTEM_MONITOR_SENDER_HPP

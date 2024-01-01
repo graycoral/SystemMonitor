@@ -20,9 +20,6 @@ set(SOURCES
 # Add header files
 set(HEADERS
     h
-    h/common
-    h/reader
-    h/sender
 )
 
 # Add executable target
@@ -33,4 +30,4 @@ target_include_directories(${PROJECT_NAME} PUBLIC include
                         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/h)
 
 # Set link libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC ptherad)
+target_link_libraries(${PROJECT_NAME} PUBLIC)

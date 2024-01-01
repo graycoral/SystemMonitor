@@ -3,14 +3,9 @@
 #include <memory.h>
 
 #include <fstream>
+#include <sstream>
 
 const char* filename = "/proc/stat";
-
-SystemMonitorDataReaderLinux::SystemMonitorDataReaderLinux() { prev_data_{}; }
-
-SystemMonitorDataReaderLinux::~SystemMonitorDataReaderLinux() {
-  cur_data_.reset();
-}
 
 bool SystemMonitorDataReaderLinux::init() {
   // Initialize the data reader
@@ -21,9 +16,6 @@ bool SystemMonitorDataReaderLinux::init() {
 bool SystemMonitorDataReaderLinux::start() {
   // Start the data reader
 
-  thread_ =
-      std::thread(&SystemMonitorDataReaderLinux::readSystemInformation, this);
-
   return true;
 }
 
@@ -33,24 +25,14 @@ bool SystemMonitorDataReaderLinux::stop() {
   return true;
 }
 
-bool SystemMonitorDataReaderLinux::join() {
-  // Join the data reader thread
-  if (thread_.joinable()) {
-    thread_.join();
-  } else {
-    return false;
-  }
-
-  return true;
-}
-
-void SystemMonitorDataReaderLinux::readSystemInformation() {
+bool SystemMonitorDataReaderLinux::readSystemInformation(
+    SystemMonitorData& current_data) {
   std::ifstream file(filename);
   std::string line;
 
   if (file.is_open()) {
     while (std::getline(file, line)) {
-      // Parse the line and update cur_data_
+      // Parse the line and update current_data
       // This is a placeholder, replace it with actual parsing logic
       if (line.find("cpu") != std::string::npos) {
         // Parse CPU data
@@ -70,7 +52,7 @@ void SystemMonitorDataReaderLinux::readSystemInformation() {
           double usage = (total - idle) / static_cast<double>(total) * 100.0;
 
           // Update cur_data_ with CPU usage
-          cur_data_.cpuUsage = usage;
+          current_data.cpu_usage.push_back(usage);
         }
       } else if (line.find("meminfo") != std::string::npos) {
         // Parse memory data

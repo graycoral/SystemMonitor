@@ -15,7 +15,7 @@ class SystemMonitorReader
   /**
    * @brief Constructs a SystemMonitorReader object.
    */
-  SystemMonitorReader(std::weak_ptr<ISystemMonitorSender>& system_info);
+  SystemMonitorReader(std::weak_ptr<ISystemMonitorSender>& system_iterface);
 
   /**
    * @brief Destroys the SystemMonitorReader object.

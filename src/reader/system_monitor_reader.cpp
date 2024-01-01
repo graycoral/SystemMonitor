@@ -9,13 +9,11 @@
 #endif
 
 SystemMonitorReader::SystemMonitorReader(
-    std::weak_ptr<ISystemMonitorSender>& system_info)
-{
-  system_interface_ = system_info;
+    std::weak_ptr<ISystemMonitorSender>& system_iterface) {
+  system_interface_ = system_iterface;
 }
 
-bool SystemMonitorReader::init()
-{
+bool SystemMonitorReader::init() {
 #ifdef __linux__
   data_reader_ = std::make_shared<SystemMonitorDataReaderLinux>();
 #else
@@ -30,25 +28,23 @@ bool SystemMonitorReader::init()
   return true;
 }
 
-bool SystemMonitorReader::start()
-{
-    thread_ = std::thread([&] {
-        data_reader_->start();
-        while(true) {
-            SystemMonitorData cur_data {};
+bool SystemMonitorReader::start() {
+  thread_ = std::thread([&] {
+    data_reader_->start();
+    while (true) {
+      SystemMonitorData cur_data{};
 
-            if(data_reader_->readSystemInformation()) {
-                std::cout << "Update Data" << std::endl;
-            }
-            prev_data_ = cur_data;
-        }
-    });
+      if (data_reader_->readSystemInformation(cur_data)) {
+        std::cout << "Update Data" << std::endl;
+      }
+      prev_data_ = cur_data;
+    }
+  });
 
   return true;
 }
 
-bool SystemMonitorReader::stop()
-{
+bool SystemMonitorReader::stop() {
   if (!data_reader_->stop()) {
     std::cerr << "Failed to stop system monitor reader." << std::endl;
     return false;
@@ -57,8 +53,7 @@ bool SystemMonitorReader::stop()
   return true;
 }
 
-bool SystemMonitorReader::join()
-{
+bool SystemMonitorReader::join() {
   if (thread_.joinable()) {
     thread_.join();
     return false;

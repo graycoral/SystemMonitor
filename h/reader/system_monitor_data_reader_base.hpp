@@ -41,7 +41,7 @@ class SystemMonitorDataReaderBase {
   /**
    * @brief Reads system information.
    */
-  virtual bool readSystemInformation() = 0;
+  virtual bool readSystemInformation(SystemMonitorData& current_data) = 0;
 };
 
 #endif  // SYSTEM_MONITOR_DATA_READER_BASE_HPP

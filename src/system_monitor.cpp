@@ -1,10 +1,9 @@
 
 #include "system_monitor.hpp"
 
-SystemMonitor::SystemMonitor() : reader_(nullptr), sender_(nullptr) {
+SystemMonitor::SystemMonitor() {
   sender_ = std::make_shared<SystemMonitorSender>();
-  reader_ = std::make_shared<SystemMonitorReader>(
-      std::static_pointer_cast<ISystemMonitorSender>(sender_));
+//   reader_ = std::make_shared<SystemMonitorReader>(sender_);
 }
 
 bool SystemMonitor::init() {

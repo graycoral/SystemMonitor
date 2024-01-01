@@ -9,7 +9,6 @@
  * class, which is responsible for reading system monitor data specifically for
  * Samsung devices.
  */
-#endif SYSTEM_MONITOR_DATA_READER_SAMSUNG_HPP
 
 class SystemMonitorDataReaderSamsung {
  private:
@@ -23,3 +22,5 @@ class SystemMonitorDataReaderSamsung {
   bool stop();
   bool join();
 };
+
+#endif // SYSTEM_MONITOR_DATA_READER_SAMSUNG_HPP
