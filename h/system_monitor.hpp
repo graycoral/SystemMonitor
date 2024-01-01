@@ -2,7 +2,7 @@
 #define SYSTEM_MONITOR_HPP
 
 #include "common/system_monitor_common.hpp"
-#include "reader/system_monitor_data_reader_base.hpp"
+#include "reader/system_monitor_reader.hpp"
 #include "sender/system_monitor_sender.hpp"
 
 /**
@@ -41,12 +41,15 @@ class SystemMonitor {
    */
   bool stop();
 
- private:
-  std::unique_ptr<SystemMonitorDataReaderBase> reader_;
-  std::unique_ptr<SystemMonitorSender> sender_;
+  /**
+   * @brief Joins if the system monitor is joinable.
+   * @return true if joining is successful, false otherwise.
+   */
+  bool join();
 
-  std::thread thread_;
-  std::mutex mutex_;
+ private:
+  std::shared_ptr<SystemMonitorReader> reader_;
+  std::shared_ptr<SystemMonitorSender> sender_;
 };
 
 #endif  // SYSTEM_MONITOR_HPP

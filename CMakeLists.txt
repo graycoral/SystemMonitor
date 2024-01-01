@@ -20,6 +20,9 @@ set(SOURCES
 # Add header files
 set(HEADERS
     h
+    h/common
+    h/reader
+    h/sender
 )
 
 # Add executable target

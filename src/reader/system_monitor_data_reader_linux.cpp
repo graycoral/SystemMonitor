@@ -21,6 +21,9 @@ bool SystemMonitorDataReaderLinux::init() {
 bool SystemMonitorDataReaderLinux::start() {
   // Start the data reader
 
+  thread_ =
+      std::thread(&SystemMonitorDataReaderLinux::readSystemInformation, this);
+
   return true;
 }
 
@@ -73,6 +76,7 @@ void SystemMonitorDataReaderLinux::readSystemInformation() {
         // Parse memory data
       }
       // Add more conditions to parse other types of data
+      std::this_thread::sleep_for(std::chrono::milliseconds(kDefaultSleepTime));
     }
     file.close();
   } else {

@@ -15,7 +15,8 @@ class SystemMonitorDataReaderBase {
   /**
    * @brief Constructs a SystemMonitorDataReaderBase object.
    */
-  SystemMonitorDataReaderBase(ISystemMonitorSender sender_interface);
+  SystemMonitorDataReaderBase(
+      std::weak_ptr<ISystemMonitorSender>& sender_interface);
 
   /**
    * @brief Destructor for the SystemMonitorDataReaderBase class.
@@ -38,18 +39,9 @@ class SystemMonitorDataReaderBase {
   virtual bool stop() = 0;
 
   /**
-   * @brief Joins if the system monitor reader is joinable.
+   * @brief Reads system information.
    */
-  virtual bool join() = 0;
-
   virtual bool readSystemInformation() = 0;
-
- private:
-  ISystemMonitorSender system_info_;
-
- protected:
-  std::thread thread_;
-  std::mutex mutex_;
 };
 
 #endif  // SYSTEM_MONITOR_DATA_READER_BASE_HPP

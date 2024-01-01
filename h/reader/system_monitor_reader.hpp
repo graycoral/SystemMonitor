@@ -2,33 +2,20 @@
 #ifndef SYSTEM_MONITOR_READER_HPP
 #define SYSTEM_MONITOR_READER_HPP
 
-#include <vector>
-
-#include "system_monitor_base.hpp"
+#include "common/system_monitor_common.hpp"
+#include "reader/system_monitor_data_reader_base.hpp"
 
 /**
  * @brief The SystemMonitorReader class is responsible for reading system
  * monitor data.
  */
-class SystemMonitorReader {
- private:
-  /**
-   * @brief The base class for the SystemMonitorDataReader.
-   *
-   * This class provides the interface for reading system monitor data.
-   */
-  SystemMonitorDataReaderBase data_reader_;
-
-  /**
-   * @brief The SystemMonitorInterface object to store the system information.
-   */
-  ISystemMonitorSender& system_info_;
-
+class SystemMonitorReader
+    : public std::enable_shared_from_this<SystemMonitorReader> {
  public:
   /**
    * @brief Constructs a SystemMonitorReader object.
    */
-  SystemMonitorReader();
+  SystemMonitorReader(std::weak_ptr<ISystemMonitorSender>& system_info);
 
   /**
    * @brief Destroys the SystemMonitorReader object.
@@ -55,29 +42,36 @@ class SystemMonitorReader {
    */
   bool start();
 
+  /**
+   * @brief Joins if the system monitor reader is joinable.
+   * @return true if joining is successful, false otherwise.
+   */
+  bool join();
+
  private:
   /**
    * @brief Puts system information into the provided SystemMonitorInterface
    * object.
-   *
-   * @param system_info The SystemMonitorInterface object to store the system
-   * information.
    */
-  void putSystemInformation(ISystemMonitorSender& system_info);
+  void putSystemInformation();
+
+ private:
+  /**
+   * @brief The base class for the SystemMonitorDataReader.
+   *
+   * This class provides the interface for reading system monitor data.
+   */
+  std::shared_ptr<SystemMonitorDataReaderBase> data_reader_;
 
   /**
-   * @brief Structure to hold system monitor data.
+   * @brief The SystemMonitorInterface object to store the system information.
    */
-  struct SystemMonitorData {
-    std::vector<float> cpu_usage;
-    std::vector<float> cpu_temperature;
-    std::vector<float> gpu_usage;
-  };
+  std::weak_ptr<ISystemMonitorSender> system_interface_;
 
   SystemMonitorData prev_data_;
 
   std::thread thread_;
-  stdL::mutex mutex_;
+  std::mutex mutex_;
 };
 
 #endif  // SYSTEM_MONITOR_READER_HPP

@@ -15,7 +15,7 @@ class SystemMonitorDataReaderSamsung {
  private:
   /* data */
  public:
-  SystemMonitorDataReaderSamsung(/* args */);
+  SystemMonitorDataReaderSamsung();
   ~SystemMonitorDataReaderSamsung() = default;
 
   bool init();

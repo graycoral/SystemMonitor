@@ -5,8 +5,8 @@
 #include "system_monitor.hpp"
 
 int main(int argc, char* argv[]) {
-  std::unique_ptr<SystemMonitor> system_monitor;
-  system_monitor = std::make_unique<SystemMonitor>();
+  std::shared_ptr<SystemMonitor> system_monitor;
+  system_monitor = std::make_shared<SystemMonitor>();
 
   if (!system_monitor->init()) {
     std::cerr << "Failed to initialize system monitor." << std::endl;
@@ -18,8 +18,8 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  if (!system_monitor->stop()) {
-    std::cerr << "Failed to stop system monitor." << std::endl;
+  if (!system_monitor->join()) {
+    std::cerr << "Failed to join system monitor." << std::endl;
     return 1;
   }
 

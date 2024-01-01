@@ -30,9 +30,9 @@ class SystemMonitorReaderLinux : public SystemMonitorDataReaderBase {
   bool init() override;
 
   /**
-   * @brief Reads system information.
+   * @brief Starts the system monitor reader.
    */
-  void readSystemInformation() override;
+  bool start() override;
 
   /**
    * @brief Stops the system monitor reader.
@@ -43,6 +43,11 @@ class SystemMonitorReaderLinux : public SystemMonitorDataReaderBase {
    * @brief Starts the system monitor reader.
    */
   bool join() override;
+
+  /**
+   * @brief Reads system information.
+   */
+  void readSystemInformation() override;
 };
 
 #endif  // SYSTEM_MONITOR_READER_HPP

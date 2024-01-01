@@ -2,8 +2,9 @@
 #include "system_monitor.hpp"
 
 SystemMonitor::SystemMonitor() : reader_(nullptr), sender_(nullptr) {
-  sender_ = std::make_unique<SystemMonitorSender>();
-  reader_ = std::make_unique<SystemMonitorDataReaderBase>(sender_);
+  sender_ = std::make_shared<SystemMonitorSender>();
+  reader_ = std::make_shared<SystemMonitorReader>(
+      std::static_pointer_cast<ISystemMonitorSender>(sender_));
 }
 
 bool SystemMonitor::init() {
@@ -21,12 +22,12 @@ bool SystemMonitor::init() {
 }
 
 bool SystemMonitor::start() {
-  if (reader_->start()) {
+  if (!reader_->start()) {
     std::cerr << "Failed to start system monitor reader." << std::endl;
     return false;
   }
 
-  if (sender_->start()) {
+  if (!sender_->start()) {
     std::cerr << "Failed to start system monitor sender." << std::endl;
     return false;
   }
@@ -42,6 +43,20 @@ bool SystemMonitor::stop() {
 
   if (!sender_->stop()) {
     std::cerr << "Failed to stop system monitor sender." << std::endl;
+    return false;
+  }
+
+  return true;
+}
+
+bool SystemMonitor::join() {
+  if (!reader_->join()) {
+    std::cerr << "Failed to join system monitor reader." << std::endl;
+    return false;
+  }
+
+  if (!sender_->join()) {
+    std::cerr << "Failed to join system monitor sender." << std::endl;
     return false;
   }
 
