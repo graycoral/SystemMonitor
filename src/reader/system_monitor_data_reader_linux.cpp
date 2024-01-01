@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <iterator>
 
 const char* filename = "/proc/stat";
 
