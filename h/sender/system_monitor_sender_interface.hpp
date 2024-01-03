@@ -2,6 +2,8 @@
 #ifndef SYSTEM_MONITOR_INTERFACE_HPP
 #define SYSTEM_MONITOR_INTERFACE_HPP
 
+#include "common/system_monitor_common.hpp"
+
 /**
  * @brief The interface for sending system monitor updates.
  */
@@ -10,7 +12,7 @@ class ISystemMonitorSender {
   /**
    * @brief Updates the system status.
    */
-  virtual void updateSystemStatus() = 0;
+  virtual void updateSystemStatus(SystemMonitorData& current_data) = 0;
 
   /**
    * @brief Destructor.

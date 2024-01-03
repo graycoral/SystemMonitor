@@ -2,12 +2,14 @@
 #!/bin/bash
 
 # Set the build directory
-RUN_DIR="build"
+RUN_DIR=${PWD}/build/
+APP='SystemMonitor'
 
 # Run the executable if it exists
-if [ -d $BUILD_DIR ]; then
-    cd $BUILD_DIR
-    ./SystemMonitor
+if [ -f ${RUN_DIR}/${APP} ]; then
+    echo "Running SystemMonitor..."
+    echo "Current directory: ${RUN_DIR}"
+    ${RUN_DIR}/${APP}
 else
-    echo "Build directory does not exist! Please run build.sh first."
+    echo "Build binary does not exist! Please run build.sh first."
 fi

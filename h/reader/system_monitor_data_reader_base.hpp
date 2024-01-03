@@ -1,7 +1,6 @@
 #ifndef SYSTEM_MONITOR_DATA_READER_BASE_HPP
 #define SYSTEM_MONITOR_DATA_READER_BASE_HPP
 
-#include "common/system_monitor_common.hpp"
 #include "sender/system_monitor_sender_interface.hpp"
 
 /**

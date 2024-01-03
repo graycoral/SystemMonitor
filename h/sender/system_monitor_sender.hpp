@@ -46,7 +46,7 @@ class SystemMonitorSender : public ISystemMonitorSender {
   /**
    * @brief Updates the system status.
    */
-  void updateSystemStatus() override;
+  void updateSystemStatus(SystemMonitorData& current_data) override;
 
   /**
    * @brief Sends the provided data.

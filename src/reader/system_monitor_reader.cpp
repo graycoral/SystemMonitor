@@ -1,4 +1,5 @@
 #include "reader/system_monitor_reader.hpp"
+
 #include "reader/system_monitor_data_reader_linux.hpp"
 
 SystemMonitorReader::SystemMonitorReader(
@@ -24,7 +25,11 @@ bool SystemMonitorReader::start() {
       SystemMonitorData cur_data{};
 
       if (data_reader_->readSystemInformation(cur_data)) {
-        std::cout << "Update Data" << std::endl;
+        auto it = system_interface_.lock();
+        if (it) {
+          std::cout << "Update Data" << std::endl;
+          it->updateSystemStatus(cur_data);
+        }
       }
       prev_data_ = cur_data;
     }

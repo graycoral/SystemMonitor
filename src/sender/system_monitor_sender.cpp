@@ -14,6 +14,8 @@ bool SystemMonitorSender::stop() { return true; }
 
 bool SystemMonitorSender::join() { return true; }
 
-void SystemMonitorSender::updateSystemStatus() { int Test; }
+void SystemMonitorSender::updateSystemStatus(SystemMonitorData& current_data) {
+  int Test;
+}
 
 void SystemMonitorSender::sendData(const std::string& data) { int Test; }

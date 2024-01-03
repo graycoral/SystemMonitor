@@ -3,7 +3,8 @@
 
 SystemMonitor::SystemMonitor() {
   sender_ = std::make_shared<SystemMonitorSender>();
-  reader_ = std::make_shared<SystemMonitorReader>(sender_);
+  std::weak_ptr<ISystemMonitorSender> weak_sender = sender_;  // 암시적 변환
+  reader_ = std::make_shared<SystemMonitorReader>(weak_sender);
 }
 
 bool SystemMonitor::init() {
