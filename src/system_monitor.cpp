@@ -3,7 +3,7 @@
 
 SystemMonitor::SystemMonitor() {
   sender_ = std::make_shared<SystemMonitorSender>();
-//   reader_ = std::make_shared<SystemMonitorReader>(sender_);
+  reader_ = std::make_shared<SystemMonitorReader>(sender_);
 }
 
 bool SystemMonitor::init() {

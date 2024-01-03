@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Project name
-project(systemmonitor)
+project(SystemMonitor)
 
 # Add source files
 set(SOURCES
