@@ -8,13 +8,13 @@ SystemMonitor::SystemMonitor() {
 }
 
 bool SystemMonitor::init() {
-  if (!reader_->init()) {
-    std::cerr << "Failed to initialize system monitor reader." << std::endl;
+  if (!sender_->init()) {
+    std::cerr << "Failed to initialize system monitor sender." << std::endl;
     return false;
   }
 
-  if (!sender_->init()) {
-    std::cerr << "Failed to initialize system monitor sender." << std::endl;
+  if (!reader_->init()) {
+    std::cerr << "Failed to initialize system monitor reader." << std::endl;
     return false;
   }
 
@@ -22,13 +22,13 @@ bool SystemMonitor::init() {
 }
 
 bool SystemMonitor::start() {
-  if (!reader_->start()) {
-    std::cerr << "Failed to start system monitor reader." << std::endl;
+  if (!sender_->start()) {
+    std::cerr << "Failed to start system monitor sender." << std::endl;
     return false;
   }
 
-  if (!sender_->start()) {
-    std::cerr << "Failed to start system monitor sender." << std::endl;
+  if (!reader_->start()) {
+    std::cerr << "Failed to start system monitor reader." << std::endl;
     return false;
   }
 

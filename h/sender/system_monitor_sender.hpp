@@ -49,10 +49,22 @@ class SystemMonitorSender : public ISystemMonitorSender {
   void updateSystemStatus(SystemMonitorData& current_data) override;
 
   /**
-   * @brief Sends the provided data.
-   * @param data The data to be sent.
+   * @brief Sends the provided system information.
+   * @param current_data The system information to be sent.
    */
-  void sendData(const std::string& data);
+  void sendData(const SystemMonitorData& current_data);
+
+  /**
+   * @brief Prints the provided system information.
+   * @param current_data The system information to be printed.
+   */
+  void debugSystemInfo(const SystemMonitorData& current_data);
+
+ private:
+  std::thread thread_;
+  std::mutex mutex_;
+
+  SystemMonitorData current_data_;
 };
 
 #endif  // SYSTEM_MONITOR_SENDER_HPP

@@ -32,6 +32,7 @@ bool SystemMonitorReader::start() {
         }
       }
       prev_data_ = cur_data;
+      std::this_thread::sleep_for(std::chrono::milliseconds(kDefaultSleepTime));
     }
   });
 
