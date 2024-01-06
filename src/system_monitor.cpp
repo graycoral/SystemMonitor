@@ -11,25 +11,33 @@ bool SystemMonitor::init() {
   if (!sender_->init()) {
     std::cerr << "Failed to initialize system monitor sender." << std::endl;
     return false;
+  } else {
+    std::cout << "System Monitor Sender Init End" << std::endl;
   }
 
   if (!reader_->init()) {
     std::cerr << "Failed to initialize system monitor reader." << std::endl;
     return false;
+  } else {
+    std::cout << "System Monitor Reader Init End" << std::endl;
   }
 
   return true;
 }
 
 bool SystemMonitor::start() {
-  if (!sender_->start()) {
-    std::cerr << "Failed to start system monitor sender." << std::endl;
-    return false;
-  }
-
   if (!reader_->start()) {
     std::cerr << "Failed to start system monitor reader." << std::endl;
     return false;
+  } else {
+    std::cout << "System Monitor Reader Start End" << std::endl;
+  }
+
+  if (!sender_->start()) {
+    std::cerr << "Failed to start system monitor sender." << std::endl;
+    return false;
+  } else {
+    std::cout << "System Monitor Sender Start End" << std::endl;
   }
 
   return true;
@@ -53,11 +61,15 @@ bool SystemMonitor::join() {
   if (!reader_->join()) {
     std::cerr << "Failed to join system monitor reader." << std::endl;
     return false;
+  } else {
+    std::cout << "System Monitor Reader Join End" << std::endl;
   }
 
   if (!sender_->join()) {
     std::cerr << "Failed to join system monitor sender." << std::endl;
     return false;
+  } else {
+    std::cout << "System Monitor Sender Join End" << std::endl;
   }
 
   return true;

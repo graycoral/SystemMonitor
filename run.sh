@@ -12,4 +12,6 @@ if [ -f ${RUN_DIR}/${APP} ]; then
     ${RUN_DIR}/${APP}
 else
     echo "Build binary does not exist! Please run build.sh first."
+    ./build.sh
+    ${RUN_DIR}/${APP}
 fi

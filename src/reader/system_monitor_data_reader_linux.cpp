@@ -6,7 +6,7 @@
 #include <iterator>
 #include <sstream>
 
-const char* filename = "/proc/stat";
+const char* kFilename = "/proc/stat";
 
 bool SystemMonitorDataReaderLinux::init() {
   // Initialize the data reader
@@ -28,7 +28,8 @@ bool SystemMonitorDataReaderLinux::stop() {
 
 bool SystemMonitorDataReaderLinux::readSystemInformation(
     SystemMonitorData& current_data) {
-  std::ifstream file(filename);
+  std::cout << __func__ << std::endl;
+  std::ifstream file(kFilename);
   std::string line;
 
   if (file.is_open()) {
@@ -59,7 +60,6 @@ bool SystemMonitorDataReaderLinux::readSystemInformation(
         // Parse memory data
       }
       // Add more conditions to parse other types of data
-      std::this_thread::sleep_for(std::chrono::milliseconds(kDefaultSleepTime));
     }
     file.close();
   } else {

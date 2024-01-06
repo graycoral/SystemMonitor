@@ -11,7 +11,9 @@
  * This class provides an interface for system monitor senders.
  * It inherits from the ISystemMonitorSender class.
  */
-class SystemMonitorSender : public ISystemMonitorSender {
+class SystemMonitorSender
+    : public ISystemMonitorSender,
+      public std::enable_shared_from_this<SystemMonitorSender> {
  public:
   /**
    * @brief Constructs a SystemMonitorSender object.
