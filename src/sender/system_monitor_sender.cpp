@@ -16,7 +16,6 @@ bool SystemMonitorSender::start() {
 
   thread_ = std::thread([&] {
     while (true) {
-      std::cout << "Sender Thread" << std::endl;
       std::scoped_lock<std::mutex> lock(mutex_);
       sendData(current_data_);
       std::this_thread::sleep_for(std::chrono::milliseconds(kDefaultSleepTime));
@@ -44,20 +43,15 @@ void SystemMonitorSender::updateSystemStatus(SystemMonitorData& current_data) {
 }
 
 void SystemMonitorSender::sendData(const SystemMonitorData& current_data) {
-  std::cout << __func__ << std::endl;
   debugSystemInfo(current_data);
+  // TBD : Send Data to Node
 }
 
 void SystemMonitorSender::debugSystemInfo(
     const SystemMonitorData& current_data) {
+  // TBD : Adjust for your system
   std::cout << "====== Debug System Info ======" << std::endl;
-  std::cout << "CPU Usage: " << current_data.cpu_usage[0] << std::endl;
-  std::cout << "CPU Temperature: " << current_data.cpu_temperature[0]
+  std::cout << "CPU[0]: " << current_data.cpu_usage[0] << std::endl;
+  std::cout << "CPU Temperature[0]: " << current_data.cpu_temperature[0]
             << std::endl;
-  std::cout << "GPU Usage: " << current_data.gpu_usage[0] << std::endl;
-
-  // std::cout << "GPU Temperature: " << current_data.gpu_temperature <<
-  // std::endl; std::cout << "GPU Memory Usage: " <<
-  // current_data.gpu_memory_usage << std::endl; std::cout << "GPU Memory Total:
-  // " << current_data.gpu_memory_total << std::endl;
 }
