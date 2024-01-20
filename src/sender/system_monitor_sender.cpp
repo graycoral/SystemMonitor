@@ -44,7 +44,7 @@ void SystemMonitorSender::updateSystemStatus(SystemMonitorData& current_data) {
 
 void SystemMonitorSender::sendData(const SystemMonitorData& current_data) {
   debugSystemInfo(current_data);
-  // TBD : Send Data to Node
+  // TBD : Send Data to Node and grfana
 }
 
 void SystemMonitorSender::debugSystemInfo(
@@ -52,6 +52,6 @@ void SystemMonitorSender::debugSystemInfo(
   // TBD : Adjust for your system
   std::cout << "====== Debug System Info ======" << std::endl;
   std::cout << "CPU[0]: " << current_data.cpu_usage[0] << std::endl;
-  std::cout << "CPU Temperature[0]: " << current_data.cpu_temperature[0]
+  std::cout << "Temperature[0]: " << current_data.cpu_temperature[0]
             << std::endl;
 }
