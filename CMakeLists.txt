@@ -14,20 +14,17 @@ find_package(Threads REQUIRED)
 
 # Generate ProtoBuf files
 set(PROTO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
-set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto)
+set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 
-add_custom_command(
-      OUTPUT "${GENERATED_PROTO_DIR}/system_monitor.pb.cc" "${GENERATED_PROTO_DIR}/system_monitor.pb.h"
-      COMMAND /usr/bin/protoc
-      ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
-        --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
-        -I "${PROTO_SRC_DIR}"
-        --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
-        "${rg_proto}"
-      DEPENDS "${rg_proto}"
-)
-
-
+# Generate ProtoBuf files
+# add_custom_command(
+#     OUTPUT "${GENERATED_PROTO_DIR}/system_monitor.pb.cc" "${GENERATED_PROTO_DIR}/system_monitor.pb.h"
+#     COMMAND protoc
+#     ARGS --grpc_out "${GENERATED_PROTO_DIR}"
+#         --cpp_out "${GENERATED_PROTO_DIR}"
+#         -I "${PROTO_SRC_DIR}/system_monitor.proto"
+#     DEPENDS "${PROTO_SRC_DIR}/system_monitor.proto"
+# )
 # Add source files
 set(SOURCES
     src/main.cpp
@@ -40,12 +37,18 @@ set(SOURCES
 
 include_directories(${GENERATED_PROTO_DIR})
 
+set(GENERATED_PROTOBUF_FILES
+    ${GENERATED_PROTO_DIR}/system_monitor.pb.cc
+    ${GENERATED_PROTO_DIR}/system_monitor.pb.h
+)
+
 # For MAC M1 or M2 process
 set(CMAKE_OSX_ARCHITECTURES "arm64")
 
 # Add header files
 set(HEADERS
     h/
+    proto/
 )
 
 # Add executable target
@@ -53,7 +56,8 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${GENERATED_PROTOBUF_FILES}
 
 # Set include directories
 target_include_directories(${PROJECT_NAME} PUBLIC include
-                        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/h)
+                        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/h
+                        PRIVATE ${PROTOBUF_INCLUDE_DIR})
 
 # Set link libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC pthread)
+target_link_libraries(${PROJECT_NAME} PUBLIC pthread ${PROTOBUF_LIBRARY})

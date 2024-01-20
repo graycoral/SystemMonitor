@@ -2,11 +2,6 @@ syntax = "proto3";
 
 package systemmonitor;
 
-service SystemMonitor {
-  rpc GetCpuUsage (CpuUsageRequest) returns (CpuUsageResponse) {}
-  rpc GetMemoryUsage (MemoryUsageRequest) returns (MemoryUsageResponse) {}
-  rpc GetDiskUsage (DiskUsageRequest) returns (DiskUsageResponse) {}
-}
 
 message CpuUsageRequest {
 }
@@ -15,20 +10,27 @@ message CpuUsageResponse {
   float usage_percent = 1;
 }
 
-message MemoryUsageRequest {
-}
+service SystemMonitor {
+    rpc GetCpuUsage (CpuUsageRequest) returns (CpuUsageResponse) {}
+  //   rpc GetMemoryUsage (MemoryUsageRequest) returns (MemoryUsageResponse) {}
+  //   rpc GetDiskUsage (DiskUsageRequest) returns (DiskUsageResponse) {}
+  }
 
-// 메모리 사용량 응답
-message MemoryUsageResponse {
-  float used_memory_mb = 1;
-  float total_memory_mb = 2;
-}
 
-// 디스크 사용량 요청
-message DiskUsageRequest {
-}
+// message MemoryUsageRequest {
+// }
 
-message DiskUsageResponse {
-  float used_disk_gb = 1;
-  float total_disk_gb = 2;
-}
+// // 메모리 사용량 응답
+// message MemoryUsageResponse {
+//   float used_memory_mb = 1;
+//   float total_memory_mb = 2;
+// }
+
+// // 디스크 사용량 요청
+// message DiskUsageRequest {
+// }
+
+// message DiskUsageResponse {
+//   float used_disk_gb = 1;
+//   float total_disk_gb = 2;
+// }

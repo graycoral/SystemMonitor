@@ -56,10 +56,10 @@ grpc::Status SystemMonitorSenderGrafana::GetCpuUsage(
   return grpc::Status::OK;
 }
 
-grpc::Status SystemMonitorSenderGrafana::GetMemoryUsage(
-    grpc::ServerContext* context,
-    const systemmonitor::MemoryUsageRequest* request,
-    systemmonitor::MemoryUsageResponse* response) {
-  // Logic to get memory usage and populate the response
-  return grpc::Status::OK;
-}
+// grpc::Status SystemMonitorSenderGrafana::GetMemoryUsage(
+//     grpc::ServerContext* context,
+//     const systemmonitor::MemoryUsageRequest* request,
+//     systemmonitor::MemoryUsageResponse* response) {
+//   // Logic to get memory usage and populate the response
+//   return grpc::Status::OK;
+// }
