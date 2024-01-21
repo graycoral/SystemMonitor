@@ -1,12 +1,10 @@
 #ifndef SYSTEM_MONITOR_SENDER_GRAFANA_INTERFACE_HPP
 #define SYSTEM_MONITOR_SENDER_GRAFANA_INTERFACE_HPP
 
-#include "system_monitor.pb.h"
+#include "system_monitor.grpc.pb.h"
 
 class ISystemMonitorSenderGrafana
     : public systemmonitor::SystemMonitor::Service {
-  virtual ~ISystemMonitorSenderGrafana() = default;
-
  public:
   virtual grpc::Status GetCpuUsage(
       grpc::ServerContext* context,

@@ -1,7 +1,8 @@
 #include "sender/system_monitor_sender_grafana.hpp"
 
-SystemMonitorSenderGrafana::SystemMonitorSenderGrafana()
-    : server_address_("0.0.0.0:50051") {}
+SystemMonitorSenderGrafana::SystemMonitorSenderGrafana() {
+  server_address_ = "0.0.0.0:50051";
+}
 
 bool SystemMonitorSenderGrafana::init() {
   // Prepare server builder

@@ -2,6 +2,8 @@
 #ifndef SYSTEM_MONITOR_SENDER_GRAFANA_HPP
 #define SYSTEM_MONITOR_SENDER_GRAFANA_HPP
 
+#include <grpcpp/grpcpp.h>
+
 #include "sender/system_monitor_sender_grafana_inteface.hpp"
 
 class SystemMonitorSenderGrafana : public ISystemMonitorSenderGrafana {
@@ -16,10 +18,6 @@ class SystemMonitorSenderGrafana : public ISystemMonitorSenderGrafana {
   grpc::Status GetCpuUsage(grpc::ServerContext* context,
                            const systemmonitor::CpuUsageRequest* request,
                            systemmonitor::CpuUsageResponse* response) override;
-  grpc::Status GetMemoryUsage(
-      grpc::ServerContext* context,
-      const systemmonitor::MemoryUsageRequest* request,
-      systemmonitor::MemoryUsageResponse* response) override;
 
  private:
   std::unique_ptr<grpc::Server> server_;
