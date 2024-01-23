@@ -4,328 +4,510 @@
 #include "system_monitor.pb.h"
 
 #include <algorithm>
-#include "google/protobuf/io/coded_stream.h"
-#include "google/protobuf/extension_set.h"
-#include "google/protobuf/wire_format_lite.h"
-#include "google/protobuf/descriptor.h"
-#include "google/protobuf/generated_message_reflection.h"
-#include "google/protobuf/reflection_ops.h"
-#include "google/protobuf/wire_format.h"
-#include "google/protobuf/generated_message_tctable_impl.h"
+
+#include <google/protobuf/stubs/common.h>
+#include <google/protobuf/stubs/port.h>
+#include <google/protobuf/io/coded_stream.h>
+#include <google/protobuf/wire_format_lite_inl.h>
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/reflection_ops.h>
+#include <google/protobuf/wire_format.h>
+// This is a temporary google only hack
+#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
+#include "third_party/protobuf/version.h"
+#endif
 // @@protoc_insertion_point(includes)
 
-// Must be included last.
-#include "google/protobuf/port_def.inc"
-PROTOBUF_PRAGMA_INIT_SEG
-namespace _pb = ::google::protobuf;
-namespace _pbi = ::google::protobuf::internal;
-namespace _fl = ::google::protobuf::internal::field_layout;
 namespace systemmonitor {
-
-inline constexpr CpuUsageResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : usage_percent_{0},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR CpuUsageResponse::CpuUsageResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct CpuUsageResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CpuUsageResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CpuUsageResponseDefaultTypeInternal() {}
-  union {
-    CpuUsageResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CpuUsageResponseDefaultTypeInternal _CpuUsageResponse_default_instance_;
-      template <typename>
-PROTOBUF_CONSTEXPR CpuUsageRequest::CpuUsageRequest(::_pbi::ConstantInitialized) {}
-struct CpuUsageRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CpuUsageRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CpuUsageRequestDefaultTypeInternal() {}
-  union {
-    CpuUsageRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CpuUsageRequestDefaultTypeInternal _CpuUsageRequest_default_instance_;
+class CpuUsageRequestDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<CpuUsageRequest>
+      _instance;
+} _CpuUsageRequest_default_instance_;
+class CpuUsageResponseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<CpuUsageResponse>
+      _instance;
+} _CpuUsageResponse_default_instance_;
 }  // namespace systemmonitor
-static ::_pb::Metadata file_level_metadata_system_5fmonitor_2eproto[2];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_system_5fmonitor_2eproto = nullptr;
-static constexpr const ::_pb::ServiceDescriptor**
-    file_level_service_descriptors_system_5fmonitor_2eproto = nullptr;
-const ::uint32_t TableStruct_system_5fmonitor_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
-    protodesc_cold) = {
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::systemmonitor::CpuUsageRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::systemmonitor::CpuUsageResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::systemmonitor::CpuUsageResponse, _impl_.usage_percent_),
-};
+namespace protobuf_system_5fmonitor_2eproto {
+static void InitDefaultsCpuUsageRequest() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-static const ::_pbi::MigrationSchema
-    schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::systemmonitor::CpuUsageRequest)},
-        {8, -1, -1, sizeof(::systemmonitor::CpuUsageResponse)},
-};
-
-static const ::_pb::Message* const file_default_instances[] = {
-    &::systemmonitor::_CpuUsageRequest_default_instance_._instance,
-    &::systemmonitor::_CpuUsageResponse_default_instance_._instance,
-};
-const char descriptor_table_protodef_system_5fmonitor_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024system_monitor.proto\022\rsystemmonitor\"\021\n"
-    "\017CpuUsageRequest\")\n\020CpuUsageResponse\022\025\n\r"
-    "usage_percent\030\001 \001(\0022a\n\rSystemMonitor\022P\n\013"
-    "GetCpuUsage\022\036.systemmonitor.CpuUsageRequ"
-    "est\032\037.systemmonitor.CpuUsageResponse\"\000b\006"
-    "proto3"
-};
-static ::absl::once_flag descriptor_table_system_5fmonitor_2eproto_once;
-const ::_pbi::DescriptorTable descriptor_table_system_5fmonitor_2eproto = {
-    false,
-    false,
-    206,
-    descriptor_table_protodef_system_5fmonitor_2eproto,
-    "system_monitor.proto",
-    &descriptor_table_system_5fmonitor_2eproto_once,
-    nullptr,
-    0,
-    2,
-    schemas,
-    file_default_instances,
-    TableStruct_system_5fmonitor_2eproto::offsets,
-    file_level_metadata_system_5fmonitor_2eproto,
-    file_level_enum_descriptors_system_5fmonitor_2eproto,
-    file_level_service_descriptors_system_5fmonitor_2eproto,
-};
-
-// This function exists to be marked as weak.
-// It can significantly speed up compilation by breaking up LLVM's SCC
-// in the .pb.cc translation units. Large translation units see a
-// reduction of more than 35% of walltime for optimized builds. Without
-// the weak attribute all the messages in the file, including all the
-// vtables and everything they use become part of the same SCC through
-// a cycle like:
-// GetMetadata -> descriptor table -> default instances ->
-//   vtables -> GetMetadata
-// By adding a weak function here we break the connection from the
-// individual vtables back into the descriptor table.
-PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_system_5fmonitor_2eproto_getter() {
-  return &descriptor_table_system_5fmonitor_2eproto;
+  {
+    void* ptr = &::systemmonitor::_CpuUsageRequest_default_instance_;
+    new (ptr) ::systemmonitor::CpuUsageRequest();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::systemmonitor::CpuUsageRequest::InitAsDefaultInstance();
 }
-// Force running AddDescriptors() at dynamic initialization time.
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
-static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_system_5fmonitor_2eproto(&descriptor_table_system_5fmonitor_2eproto);
+
+::google::protobuf::internal::SCCInfo<0> scc_info_CpuUsageRequest =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCpuUsageRequest}, {}};
+
+static void InitDefaultsCpuUsageResponse() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::systemmonitor::_CpuUsageResponse_default_instance_;
+    new (ptr) ::systemmonitor::CpuUsageResponse();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::systemmonitor::CpuUsageResponse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_CpuUsageResponse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCpuUsageResponse}, {}};
+
+void InitDefaults() {
+  ::google::protobuf::internal::InitSCC(&scc_info_CpuUsageRequest.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_CpuUsageResponse.base);
+}
+
+::google::protobuf::Metadata file_level_metadata[2];
+
+const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::systemmonitor::CpuUsageRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::systemmonitor::CpuUsageResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::systemmonitor::CpuUsageResponse, usage_percent_),
+};
+static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, sizeof(::systemmonitor::CpuUsageRequest)},
+  { 5, -1, sizeof(::systemmonitor::CpuUsageResponse)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&::systemmonitor::_CpuUsageRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::systemmonitor::_CpuUsageResponse_default_instance_),
+};
+
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  AssignDescriptors(
+      "system_monitor.proto", schemas, file_default_instances, TableStruct::offsets,
+      file_level_metadata, NULL, NULL);
+}
+
+void protobuf_AssignDescriptorsOnce() {
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, protobuf_AssignDescriptors);
+}
+
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
+void protobuf_RegisterTypes(const ::std::string&) {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 2);
+}
+
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+      "\n\024system_monitor.proto\022\rsystemmonitor\"\021\n"
+      "\017CpuUsageRequest\")\n\020CpuUsageResponse\022\025\n\r"
+      "usage_percent\030\001 \001(\0022a\n\rSystemMonitor\022P\n\013"
+      "GetCpuUsage\022\036.systemmonitor.CpuUsageRequ"
+      "est\032\037.systemmonitor.CpuUsageResponse\"\000b\006"
+      "proto3"
+  };
+  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
+      descriptor, 206);
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
+    "system_monitor.proto", &protobuf_RegisterTypes);
+}
+
+void AddDescriptors() {
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, AddDescriptorsImpl);
+}
+// Force AddDescriptors() to be called at dynamic initialization time.
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
+  }
+} static_descriptor_initializer;
+}  // namespace protobuf_system_5fmonitor_2eproto
 namespace systemmonitor {
+
 // ===================================================================
 
-class CpuUsageRequest::_Internal {
- public:
-};
-
-CpuUsageRequest::CpuUsageRequest(::google::protobuf::Arena* arena)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-  // @@protoc_insertion_point(arena_constructor:systemmonitor.CpuUsageRequest)
+void CpuUsageRequest::InitAsDefaultInstance() {
 }
-CpuUsageRequest::CpuUsageRequest(
-    ::google::protobuf::Arena* arena,
-    const CpuUsageRequest& from)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-  CpuUsageRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
+CpuUsageRequest::CpuUsageRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_system_5fmonitor_2eproto::scc_info_CpuUsageRequest.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:systemmonitor.CpuUsageRequest)
+}
+CpuUsageRequest::CpuUsageRequest(const CpuUsageRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:systemmonitor.CpuUsageRequest)
 }
 
-
-
-
-
-
-
-
-
-::google::protobuf::Metadata CpuUsageRequest::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_system_5fmonitor_2eproto_getter, &descriptor_table_system_5fmonitor_2eproto_once,
-      file_level_metadata_system_5fmonitor_2eproto[0]);
+void CpuUsageRequest::SharedCtor() {
 }
-// ===================================================================
 
-class CpuUsageResponse::_Internal {
- public:
-};
-
-CpuUsageResponse::CpuUsageResponse(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:systemmonitor.CpuUsageResponse)
-}
-CpuUsageResponse::CpuUsageResponse(
-    ::google::protobuf::Arena* arena, const CpuUsageResponse& from)
-    : CpuUsageResponse(arena) {
-  MergeFrom(from);
-}
-inline PROTOBUF_NDEBUG_INLINE CpuUsageResponse::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
-
-inline void CpuUsageResponse::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.usage_percent_ = {};
-}
-CpuUsageResponse::~CpuUsageResponse() {
-  // @@protoc_insertion_point(destructor:systemmonitor.CpuUsageResponse)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+CpuUsageRequest::~CpuUsageRequest() {
+  // @@protoc_insertion_point(destructor:systemmonitor.CpuUsageRequest)
   SharedDtor();
 }
-inline void CpuUsageResponse::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.~Impl_();
+
+void CpuUsageRequest::SharedDtor() {
 }
 
-PROTOBUF_NOINLINE void CpuUsageResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:systemmonitor.CpuUsageResponse)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
+void CpuUsageRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* CpuUsageRequest::descriptor() {
+  ::protobuf_system_5fmonitor_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_system_5fmonitor_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const CpuUsageRequest& CpuUsageRequest::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_system_5fmonitor_2eproto::scc_info_CpuUsageRequest.base);
+  return *internal_default_instance();
+}
+
+
+void CpuUsageRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:systemmonitor.CpuUsageRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.usage_percent_ = 0;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+  _internal_metadata_.Clear();
 }
 
-const char* CpuUsageResponse::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
+bool CpuUsageRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:systemmonitor.CpuUsageRequest)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:systemmonitor.CpuUsageRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:systemmonitor.CpuUsageRequest)
+  return false;
+#undef DO_
+}
+
+void CpuUsageRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:systemmonitor.CpuUsageRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:systemmonitor.CpuUsageRequest)
+}
+
+::google::protobuf::uint8* CpuUsageRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:systemmonitor.CpuUsageRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:systemmonitor.CpuUsageRequest)
+  return target;
+}
+
+size_t CpuUsageRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:systemmonitor.CpuUsageRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CpuUsageRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:systemmonitor.CpuUsageRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CpuUsageRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const CpuUsageRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:systemmonitor.CpuUsageRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:systemmonitor.CpuUsageRequest)
+    MergeFrom(*source);
+  }
+}
+
+void CpuUsageRequest::MergeFrom(const CpuUsageRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:systemmonitor.CpuUsageRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void CpuUsageRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:systemmonitor.CpuUsageRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CpuUsageRequest::CopyFrom(const CpuUsageRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:systemmonitor.CpuUsageRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CpuUsageRequest::IsInitialized() const {
+  return true;
+}
+
+void CpuUsageRequest::Swap(CpuUsageRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void CpuUsageRequest::InternalSwap(CpuUsageRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata CpuUsageRequest::GetMetadata() const {
+  protobuf_system_5fmonitor_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_system_5fmonitor_2eproto::file_level_metadata[kIndexInFileMessages];
 }
 
 
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CpuUsageResponse::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_CpuUsageResponse_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // float usage_percent = 1;
-    {::_pbi::TcParser::FastF32S1,
-     {13, 63, 0, PROTOBUF_FIELD_OFFSET(CpuUsageResponse, _impl_.usage_percent_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // float usage_percent = 1;
-    {PROTOBUF_FIELD_OFFSET(CpuUsageResponse, _impl_.usage_percent_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
+// ===================================================================
 
-::uint8_t* CpuUsageResponse::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:systemmonitor.CpuUsageResponse)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
+void CpuUsageResponse::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int CpuUsageResponse::kUsagePercentFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+CpuUsageResponse::CpuUsageResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_system_5fmonitor_2eproto::scc_info_CpuUsageResponse.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:systemmonitor.CpuUsageResponse)
+}
+CpuUsageResponse::CpuUsageResponse(const CpuUsageResponse& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  usage_percent_ = from.usage_percent_;
+  // @@protoc_insertion_point(copy_constructor:systemmonitor.CpuUsageResponse)
+}
+
+void CpuUsageResponse::SharedCtor() {
+  usage_percent_ = 0;
+}
+
+CpuUsageResponse::~CpuUsageResponse() {
+  // @@protoc_insertion_point(destructor:systemmonitor.CpuUsageResponse)
+  SharedDtor();
+}
+
+void CpuUsageResponse::SharedDtor() {
+}
+
+void CpuUsageResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* CpuUsageResponse::descriptor() {
+  ::protobuf_system_5fmonitor_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_system_5fmonitor_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const CpuUsageResponse& CpuUsageResponse::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_system_5fmonitor_2eproto::scc_info_CpuUsageResponse.base);
+  return *internal_default_instance();
+}
+
+
+void CpuUsageResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:systemmonitor.CpuUsageResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  usage_percent_ = 0;
+  _internal_metadata_.Clear();
+}
+
+bool CpuUsageResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:systemmonitor.CpuUsageResponse)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // float usage_percent = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(13u /* 13 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &usage_percent_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:systemmonitor.CpuUsageResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:systemmonitor.CpuUsageResponse)
+  return false;
+#undef DO_
+}
+
+void CpuUsageResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:systemmonitor.CpuUsageResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
 
   // float usage_percent = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_usage_percent = this->_internal_usage_percent();
-  ::uint32_t raw_usage_percent;
-  memcpy(&raw_usage_percent, &tmp_usage_percent, sizeof(tmp_usage_percent));
-  if (raw_usage_percent != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        1, this->_internal_usage_percent(), target);
+  if (this->usage_percent() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->usage_percent(), output);
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:systemmonitor.CpuUsageResponse)
+}
+
+::google::protobuf::uint8* CpuUsageResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:systemmonitor.CpuUsageResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float usage_percent = 1;
+  if (this->usage_percent() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->usage_percent(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
   }
   // @@protoc_insertion_point(serialize_to_array_end:systemmonitor.CpuUsageResponse)
   return target;
 }
 
-::size_t CpuUsageResponse::ByteSizeLong() const {
+size_t CpuUsageResponse::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:systemmonitor.CpuUsageResponse)
-  ::size_t total_size = 0;
+  size_t total_size = 0;
 
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
   // float usage_percent = 1;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_usage_percent = this->_internal_usage_percent();
-  ::uint32_t raw_usage_percent;
-  memcpy(&raw_usage_percent, &tmp_usage_percent, sizeof(tmp_usage_percent));
-  if (raw_usage_percent != 0) {
-    total_size += 5;
+  if (this->usage_percent() != 0) {
+    total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
 }
 
-const ::google::protobuf::Message::ClassData CpuUsageResponse::_class_data_ = {
-    CpuUsageResponse::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* CpuUsageResponse::GetClassData() const {
-  return &_class_data_;
+void CpuUsageResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:systemmonitor.CpuUsageResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CpuUsageResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const CpuUsageResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:systemmonitor.CpuUsageResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:systemmonitor.CpuUsageResponse)
+    MergeFrom(*source);
+  }
 }
 
-void CpuUsageResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<CpuUsageResponse*>(&to_msg);
-  auto& from = static_cast<const CpuUsageResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:systemmonitor.CpuUsageResponse)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
+void CpuUsageResponse::MergeFrom(const CpuUsageResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:systemmonitor.CpuUsageResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_usage_percent = from._internal_usage_percent();
-  ::uint32_t raw_usage_percent;
-  memcpy(&raw_usage_percent, &tmp_usage_percent, sizeof(tmp_usage_percent));
-  if (raw_usage_percent != 0) {
-    _this->_internal_set_usage_percent(from._internal_usage_percent());
+  if (from.usage_percent() != 0) {
+    set_usage_percent(from.usage_percent());
   }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CpuUsageResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:systemmonitor.CpuUsageResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
 }
 
 void CpuUsageResponse::CopyFrom(const CpuUsageResponse& from) {
@@ -335,29 +517,37 @@ void CpuUsageResponse::CopyFrom(const CpuUsageResponse& from) {
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool CpuUsageResponse::IsInitialized() const {
+bool CpuUsageResponse::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* CpuUsageResponse::AccessCachedSize() const {
-  return &_impl_._cached_size_;
+void CpuUsageResponse::Swap(CpuUsageResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
 }
-void CpuUsageResponse::InternalSwap(CpuUsageResponse* PROTOBUF_RESTRICT other) {
+void CpuUsageResponse::InternalSwap(CpuUsageResponse* other) {
   using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-        swap(_impl_.usage_percent_, other->_impl_.usage_percent_);
+  swap(usage_percent_, other->usage_percent_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 
 ::google::protobuf::Metadata CpuUsageResponse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_system_5fmonitor_2eproto_getter, &descriptor_table_system_5fmonitor_2eproto_once,
-      file_level_metadata_system_5fmonitor_2eproto[1]);
+  protobuf_system_5fmonitor_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_system_5fmonitor_2eproto::file_level_metadata[kIndexInFileMessages];
 }
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace systemmonitor
 namespace google {
 namespace protobuf {
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::systemmonitor::CpuUsageRequest* Arena::CreateMaybeMessage< ::systemmonitor::CpuUsageRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::systemmonitor::CpuUsageRequest >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::systemmonitor::CpuUsageResponse* Arena::CreateMaybeMessage< ::systemmonitor::CpuUsageResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::systemmonitor::CpuUsageResponse >(arena);
+}
 }  // namespace protobuf
 }  // namespace google
+
 // @@protoc_insertion_point(global_scope)
-#include "google/protobuf/port_undef.inc"
