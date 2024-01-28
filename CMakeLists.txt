@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(SystemMonitor)
 
 find_package(Protobuf REQUIRED)
+find_package(absl CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(Threads)
 
@@ -20,14 +21,13 @@ MESSAGE(${PROTOBUF_INCLUDE_DIR})
 set(PROTO_PATH ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 
 MESSAGE(${PROTO_PATH})
-
 # Generate ProtoBuf files
 set(PROTO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 set(PROTO_FILE_NAME system_monitor)
 set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
-set(PROTOBUF_PROTOC_EXECUTABLE /usr/bin/protoc)
+set(PROTOBUF_PROTOC_EXECUTABLE protoc)
 
-execute_process(COMMAND  which grpc_cpp_plugin OUTPUT_VARIABLE GRPC_CPP_PLUGIN)
+execute_process(COMMAND which grpc_cpp_plugin OUTPUT_VARIABLE GRPC_CPP_PLUGIN)
 string(STRIP ${GRPC_CPP_PLUGIN} GRPC_CPP_PLUGIN)
 
 message("file path " ${PROTO_PATH})
@@ -38,15 +38,14 @@ add_custom_command(
     OUTPUT   " ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.h" "${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.cc"
     COMMAND ${PROTOBUF_PROTOC_EXECUTABLE}
     ARGS --cpp_out="${PROTO_PATH}"
-    -I="${PROTO_PATH}" ${PROTO_PATH}/${PROTO_FILE_NAME}.proto
+    -I="${PROTO_PATH}" "${PROTO_PATH}/${PROTO_FILE_NAME}.proto"
     DEPENDS "${PROTO_PATH}/${PROTO_FILE_NAME}.proto"
 )
 
 add_custom_command(
     OUTPUT   "${PROTO_PATH}/${PROTO_FILE_NAME}.grpc.pb.h" "${PROTO_PATH}/${PROTO_FILE_NAME}.grpc.pb.cc"
     COMMAND ${PROTOBUF_PROTOC_EXECUTABLE}
-    ARGS --cpp_out="${PROTO_PATH}"
-    --grpc_out="${PROTO_PATH}"
+    ARGS --grpc_out="${PROTO_PATH}"
     -I="${PROTO_PATH}"
     --plugin=protoc-gen-grpc="${GRPC_CPP_PLUGIN}" "${PROTO_PATH}/${PROTO_FILE_NAME}.proto"
     DEPENDS "${PROTO_PATH}/${PROTO_FILE_NAME}.proto"
@@ -89,16 +88,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC include
 
 # Set link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC pthread
-                                        ${PROTOBUF_LIBRARY}
-                                        protobuf
-                                        grpc
-                                        grpc++
+                                        # ${PROTOBUF_LIBRARY}  PRIVATE /usr/local/lib/libprotobuf.dylib
+                                        protobuf::libprotobuf
+                                        gRPC::grpc
+                                        gRPC::grpc++
                                     )
-
-
-
-# get_target_property(grpc_cpp_plugin_location gRPC::grpc_cpp_plugin LOCATION)
-# protobuf_generate(TARGET myproto LANGUAGE cpp)
-# protobuf_generate(TARGET myproto LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc PLUGIN "protoc-gen-grpc=${grpc_cpp_plugin_location}")
-
-
