@@ -88,7 +88,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC include
 
 # Set link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC pthread
-                                        # ${PROTOBUF_LIBRARY}  PRIVATE /usr/local/lib/libprotobuf.dylib
+                                        ${PROTOBUF_LIBRARY}
                                         protobuf::libprotobuf
                                         gRPC::grpc
                                         gRPC::grpc++
