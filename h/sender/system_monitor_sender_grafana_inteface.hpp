@@ -1,15 +1,16 @@
 #ifndef SYSTEM_MONITOR_SENDER_GRAFANA_INTERFACE_HPP
 #define SYSTEM_MONITOR_SENDER_GRAFANA_INTERFACE_HPP
 
-#include "system_monitor.grpc.pb.h"
+// #include "system_monitor.grpc.pb.h"
 
 class ISystemMonitorSenderGrafana
-    : public systemmonitor::SystemMonitor::Service {
+// : public systemmonitor::SystemMonitor::Service
+{
  public:
-  virtual grpc::Status GetCpuUsage(
-      grpc::ServerContext* context,
-      const systemmonitor::CpuUsageRequest* request,
-      systemmonitor::CpuUsageResponse* response) = 0;
+  //   virtual grpc::Status GetCpuUsage(
+  //       grpc::ServerContext* context,
+  //       const systemmonitor::CpuUsageRequest* request,
+  //       systemmonitor::CpuUsageResponse* response) = 0;
   //   virtual grpc::Status GetMemoryUsage(
   //       grpc::ServerContext* context,
   //       const systemmonitor::MemoryUsageRequest* request,

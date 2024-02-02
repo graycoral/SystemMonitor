@@ -25,13 +25,15 @@ MESSAGE(${PROTO_PATH})
 set(PROTO_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
 set(PROTO_FILE_NAME system_monitor)
 set(GENERATED_PROTO_DIR ${CMAKE_CURRENT_SOURCE_DIR}/proto)
-set(PROTOBUF_PROTOC_EXECUTABLE protoc)
+
+find_program(PROTOBUF_PROTOC_EXECUTABLE protoc)
+
+# set(PROTOBUF_PROTOC_EXECUTABLE protoc)
 
 execute_process(COMMAND which grpc_cpp_plugin OUTPUT_VARIABLE GRPC_CPP_PLUGIN)
 string(STRIP ${GRPC_CPP_PLUGIN} GRPC_CPP_PLUGIN)
 
 message("file path " ${PROTO_PATH})
-message("GENERATED_PROTOBUF_PATH " ${GENERATED_PROTOBUF_PATH})
 message("PROTOBUF_LIBRARY " ${PROTOBUF_LIBRARY})
 
 add_custom_command(
@@ -60,17 +62,17 @@ set(SOURCES
     src/main.cpp
     src/system_monitor.cpp
     src/sender/system_monitor_sender.cpp
-    src/sender/system_monitor_sender_grafana.cpp
+    # src/sender/system_monitor_sender_grafana.cpp
     src/reader/system_monitor_reader.cpp
     src/reader/system_monitor_data_reader_linux.cpp
-    ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.cc
-    ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.grpc.pb.cc
+    # ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.cc
+    # ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.grpc.pb.cc
 )
 
 include_directories(${GENERATED_PROTO_DIR})
 
 # For MAC M1 or M2 process
-set(CMAKE_OSX_ARCHITECTURES "arm64")
+# set(CMAKE_OSX_ARCHITECTURES "arm64")
 
 # Add header files
 set(HEADERS
@@ -80,6 +82,8 @@ set(HEADERS
 # Add executable target
 add_executable(${PROJECT_NAME} ${SOURCES})
 
+link_directories(/usr/local/lib)
+
 # Set include directories
 target_include_directories(${PROJECT_NAME} PUBLIC include
                                             PUBLIC
@@ -88,8 +92,25 @@ target_include_directories(${PROJECT_NAME} PUBLIC include
 
 # Set link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC pthread
-                                        ${PROTOBUF_LIBRARY}
-                                        protobuf::libprotobuf
-                                        gRPC::grpc
+                                        grpc++_reflection
                                         gRPC::grpc++
+                                        ${PROTOBUF_LIBRARY}
                                     )
+
+# Build tests
+set(TEST_SWC test_${PROJECT_NAME})
+add_executable(${TEST_SWC} test/test_system_monitor_linux.cpp
+                ${SOURCES})
+
+# Add header files
+set(HEADERS
+    h/
+)
+
+include_directories(googletest/include)
+target_include_directories(${PROJECT_NAME} PUBLIC include
+                                        PUBLIC
+                                        ${HEADERS}
+                                        ${GENERATED_PROTO_DIR})
+
+target_link_libraries(${TEST_SWC} gtest gtest_main)

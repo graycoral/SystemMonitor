@@ -16,7 +16,7 @@ mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
 # Run CMake to generate the build files
-cmake .. -DgRPC_INSTALL=ON   -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DABSL_PROPAGATE_CXX_STD=ON
+cmake .. -DgRPC_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/local/lib -DABSL_PROPAGATE_CXX_STD=ON
 
 # Build the project
 make

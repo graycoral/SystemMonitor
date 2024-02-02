@@ -24,10 +24,18 @@ RUN pip3 install grpcio grpcio-tools
 RUN git clone https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
-    && mkdir -p cmake/build \
+    && mkdir -p cmake/build \   
     && cd cmake/build \
     && cmake -DgRPC_INSTALL=ON \
         -DgRPC_BUILD_TESTS=OFF \
         ../.. \
     && make -j3\
+    && make install
+
+RUN git clone https://github.com/google/googletest.git /googletest \
+    && cd /googletest \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+    && make \
     && make install

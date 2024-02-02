@@ -4,7 +4,7 @@
 IMAGE_NAME="system_monitor_docker"
 
 # Set the directory path where Dockerfile is located
-DOCKERFILE_DIR="./Docker"
+DOCKERFILE_DIR="./"
 SYSTEM_MONITOR_PATH=${PWD}/../../SystemMonitor
 
 # Function to check if the image already exists and ask the user for re-building
