@@ -71,9 +71,6 @@ set(SOURCES
 
 include_directories(${GENERATED_PROTO_DIR})
 
-# For MAC M1 or M2 process
-# set(CMAKE_OSX_ARCHITECTURES "arm64")
-
 # Add header files
 set(HEADERS
     h/
@@ -82,9 +79,9 @@ set(HEADERS
 # Add executable target
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-link_directories(/usr/local/lib)
+# link_directories(/usr/local/lib)
 
-# Set include directories
+# # Set include directories
 target_include_directories(${PROJECT_NAME} PUBLIC include
                                             PUBLIC
                                             ${HEADERS}
@@ -97,20 +94,23 @@ target_link_libraries(${PROJECT_NAME} PUBLIC pthread
                                         ${PROTOBUF_LIBRARY}
                                     )
 
-# Build tests
+# # Build tests
 set(TEST_SWC test_${PROJECT_NAME})
+
 add_executable(${TEST_SWC} test/test_system_monitor_linux.cpp
                 ${SOURCES})
 
-# Add header files
-set(HEADERS
-    h/
+include_directories(googletest/include)
+
+target_include_directories(${TEST_SWC} PUBLIC include
+                                            PUBLIC
+                                            ${HEADERS}
+                                            ${GENERATED_PROTO_DIR}
 )
 
-include_directories(googletest/include)
-target_include_directories(${PROJECT_NAME} PUBLIC include
-                                        PUBLIC
-                                        ${HEADERS}
-                                        ${GENERATED_PROTO_DIR})
-
+target_compile_definitions(${TEST_SWC} PRIVATE UNIT_TEST)
 target_link_libraries(${TEST_SWC} gtest gtest_main)
+
+# install path
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(TARGETS ${TEST_SWC} DESTINATION bin)
