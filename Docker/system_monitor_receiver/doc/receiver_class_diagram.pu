@@ -1,0 +1,19 @@
+@startuml
+
+title "SystemMonitor Receiver Class Diagram"
+
+class Communicator
+class SystemMonitorReceiver
+class Writor
+
+Communicator -left-* SystemMonitorReceiver
+SystemMonitorReceiver *-left- Writor
+
+abstract class ICommunicator
+
+ICommunicator <|-down- Communicator
+
+
+
+@enduml
+

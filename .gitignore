@@ -36,3 +36,6 @@
 
 build/
 bin/
+
+#python
+__pycache__/

@@ -62,11 +62,11 @@ set(SOURCES
     src/main.cpp
     src/system_monitor.cpp
     src/sender/system_monitor_sender.cpp
-    # src/sender/system_monitor_sender_grafana.cpp
+    src/sender/system_monitor_sender_grafana.cpp
     src/reader/system_monitor_reader.cpp
     src/reader/system_monitor_data_reader_linux.cpp
-    # ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.cc
-    # ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.grpc.pb.cc
+    ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.pb.cc
+    ${GENERATED_PROTO_DIR}/${PROTO_FILE_NAME}.grpc.pb.cc
 )
 
 include_directories(${GENERATED_PROTO_DIR})
